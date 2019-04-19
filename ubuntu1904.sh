@@ -139,6 +139,11 @@ base=https://github.com/docker/machine/releases/download/${DOCKER_MACHINE_VER}; 
 curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine; \
 install /tmp/docker-machine /usr/local/bin/docker-machine
 
+# dropbox
+apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E; \
+echo "deb http://linux.dropbox.com/ubuntu cosmic main" > /etc/apt/sources.list.d/dropbox.list; \
+apt install dropbox -y
+
 # kops
 curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64; \
 chmod +x ./kops-linux-amd64; \
