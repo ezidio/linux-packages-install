@@ -24,9 +24,11 @@ aptInstall=" \
     bash-completion \
     build-essential \
     bzip2 \
+    chrome-gnome-shell \
     cifs-utils \
     cryptsetup \
     curl \
+    dconf-editor \
     dialog \
     diffutils \
     dirmngr \
@@ -43,6 +45,7 @@ aptInstall=" \
     geoip-bin \
     geoip-database \
     git \
+    gnome-tweak-tool \
     golang \
     gparted \
     hddtemp \
@@ -63,6 +66,7 @@ aptInstall=" \
     nload \
     net-tools \
     netcat \
+    network-manager-openvpn-gnome \
     nfs-kernel-server \
     nfs-common \
     nmap \
