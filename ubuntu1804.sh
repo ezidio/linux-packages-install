@@ -139,37 +139,37 @@ curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine; \
 install /tmp/docker-machine /usr/local/bin/docker-machine
 
 # dropbox
-apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E; \
-echo "deb http://linux.dropbox.com/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/dropbox.list; \
-apt install dropbox -y
+#apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E; \
+#echo "deb http://linux.dropbox.com/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/dropbox.list; \
+#apt install dropbox -y
 
 # kops
-curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64; \
-chmod +x ./kops-linux-amd64; \
-mv ./kops-linux-amd64 /usr/bin/kops
+#curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64; \
+#chmod +x ./kops-linux-amd64; \
+#mv ./kops-linux-amd64 /usr/bin/kops
 
 # kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl; \
-chmod +x ./kubectl; \
-mv ./kubectl /usr/bin/kubectl; \
-echo "source <(kubectl completion bash)" >> ~/.bashrc
+#curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl; \
+#chmod +x ./kubectl; \
+#mv ./kubectl /usr/bin/kubectl; \
+#cho "source <(kubectl completion bash)" >> ~/.bashrc
 
 # helm
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get > get_helm.sh; \
-chmod 700 get_helm.sh; \
-./get_helm.sh
+#curl https://raw.githubusercontent.com/helm/helm/master/scripts/get > get_helm.sh; \
+#chmod 700 get_helm.sh; \
+#./get_helm.sh
 
 # mega
-wget https://mega.nz/linux/MEGAsync/x$(lsb_release -si)_$(lsb_release -sr)/amd64/megasync-x$(lsb_release -si)_$(lsb_release -sr)_amd64.deb; \
-apt install -y ./megasync-x$(lsb_release -si)_$(lsb_release -sr)_amd64.deb; \
-rm -f megasync-x$(lsb_release -si)_$(lsb_release -sr)_amd64.deb
+#wget https://mega.nz/linux/MEGAsync/x$(lsb_release -si)_$(lsb_release -sr)/amd64/megasync-x$(lsb_release -si)_$(lsb_release -sr)_amd64.deb; \
+#apt install -y ./megasync-x$(lsb_release -si)_$(lsb_release -sr)_amd64.deb; \
+#rm -f megasync-x$(lsb_release -si)_$(lsb_release -sr)_amd64.deb
 
 # packer
-curl -o packer.zip $(curl https://releases.hashicorp.com/index.json | jq '{packer}' | egrep "linux.*amd64" | sort --version-sort -r | head -1 | awk -F[\"] '{print $4}'); \
-unzip packer.zip; \
-chmod +x ./packer; \
-mv ./packer /usr/sbin/packer; \
-rm -f packer.zip
+#curl -o packer.zip $(curl https://releases.hashicorp.com/index.json | jq '{packer}' | egrep "linux.*amd64" | sort --version-sort -r | head -1 | awk -F[\"] '{print $4}'); \
+#unzip packer.zip; \
+#chmod +x ./packer; \
+#mv ./packer /usr/sbin/packer; \
+#rm -f packer.zip
 
 # skype
 wget https://repo.skype.com/latest/skypeforlinux-64.deb; \
@@ -188,27 +188,27 @@ apt update -q; \
 apt install -qy spotify-client
 
 # terraform
-function terraform-install() {
-    [[ -f /sbin/terraform ]] && echo "`/sbin/terraform version` already installed at /sbin/terraform" && return 0
-    OS=$(uname -s)
-    LATEST_VERSION=$(curl -sL https://releases.hashicorp.com/terraform/index.json | jq -r '.versions[].version' | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | egrep -v 'alpha|beta|rc' | tail -1)
-    LATEST_URL="https://releases.hashicorp.com/terraform/${LATEST_VERSION}/terraform_${LATEST_VERSION}_${OS,,}_amd64.zip"
-    curl ${LATEST_URL} > /tmp/terraform.zip
-    mkdir -p /sbin
-    (cd /sbin && unzip /tmp/terraform.zip)
-    if [[ -z $(grep 'export PATH=/sbin:${PATH}' ~/.bashrc 2>/dev/null) ]]; then
-        echo 'export PATH=/sbin:${PATH}' >> ~/.bashrc
-    fi
+#function terraform-install() {
+#    [[ -f /sbin/terraform ]] && echo "`/sbin/terraform version` already installed at /sbin/terraform" && return 0
+#    OS=$(uname -s)
+#    LATEST_VERSION=$(curl -sL https://releases.hashicorp.com/terraform/index.json | jq -r '.versions[].version' | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | egrep -v 'alpha|beta|rc' | tail -1)
+#    LATEST_URL="https://releases.hashicorp.com/terraform/${LATEST_VERSION}/terraform_${LATEST_VERSION}_${OS,,}_amd64.zip"
+#    curl ${LATEST_URL} > /tmp/terraform.zip
+#    mkdir -p /sbin
+#    (cd /sbin && unzip /tmp/terraform.zip)
+#    if [[ -z $(grep 'export PATH=/sbin:${PATH}' ~/.bashrc 2>/dev/null) ]]; then
+#        echo 'export PATH=/sbin:${PATH}' >> ~/.bashrc
+#    fi
+#
+#    echo "Installed: `/sbin/terraform version`"
+#}
 
-    echo "Installed: `/sbin/terraform version`"
-}
-
-terraform-install
+#terraform-install
 
 # terragrunt
-curl -LO https://github.com/gruntwork-io/terragrunt/releases/download/$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | grep tag_name | cut -d '"' -f 4)/terragrunt_linux_amd64; \
-chmod +x ./terragrunt_linux_amd64; \
-mv ./terragrunt_linux_amd64 /usr/bin/terragrunt
+#curl -LO https://github.com/gruntwork-io/terragrunt/releases/download/$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | grep tag_name | cut -d '"' -f 4)/terragrunt_linux_amd64; \
+#chmod +x ./terragrunt_linux_amd64; \
+#mv ./terragrunt_linux_amd64 /usr/bin/terragrunt
 
 # typora
 wget -qO - https://typora.io/linux/public-key.asc | apt-key add -; \
