@@ -216,6 +216,12 @@ add-apt-repository 'deb https://typora.io/linux ./'; \
 apt update -q; \
 apt install -qy typora
 
+# Yarn 
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+apt-get update
+apt-get install yarn
+
 # update/upgrade
 apt update -q; \
 apt upgrade -qy;
