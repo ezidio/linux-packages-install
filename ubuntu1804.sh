@@ -176,6 +176,11 @@ wget https://repo.skype.com/latest/skypeforlinux-64.deb; \
 apt install -y ./skypeforlinux-64.deb; \
 rm -f ./skypeforlinux-64.deb
 
+# DBeaver - Gerenciador de Banco de Dados
+wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb; \
+apt install -y ./dbeaver-ce_latest_amd64.deb; \
+rm -f ./dbeaver-ce_latest_amd64.deb;
+
 # slack
 SLACK_VER=3.3.8
 wget https://downloads.slack-edge.com/linux_releases/slack-desktop-${SLACK_VER}-amd64.deb; \
